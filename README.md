@@ -1,6 +1,6 @@
-# TDD Template for Python
+# Node Graph Algorithm
 
-Template for TDD development in Python
+A node graph algorithm, based on the JavaScript code provided in the [Epicodus Node Graph](https://github.com/epicodus-curriculum/capstone/tree/main) lessons, and rewritten in Python by myself.
 
 ## Technologies
 
