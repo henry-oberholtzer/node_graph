@@ -12,6 +12,4 @@
 
 from pytest import main
 
-from program import program
-
 main(['-vv'])
