@@ -40,5 +40,19 @@ class Graph:
         self.adjacency_list.get(edge).remove(node)
       del self.adjacency_list[node]
       
-  def depth_first_reachable(self):
-    pass
+  def depthfirst_reachable(self, starting_node, target_node):
+    if not self.has_node(starting_node) or not self.has_node(target_node):
+      return False
+    stack = [starting_node]
+    traversed_nodes = set()
+    while stack:
+      active_node = stack.pop(0)
+      if (active_node == target_node):
+        return True
+      else:
+        traversed_nodes.add(active_node)
+        for node in self.adjacency_list.get(active_node):
+          if node not in traversed_nodes:
+            stack.insert(0, node)
+    return False
+            
