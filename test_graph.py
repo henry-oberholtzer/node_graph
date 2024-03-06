@@ -11,7 +11,7 @@ def vvardenfell(graph: Graph):
     node1 = "Ebonheart"
     node2 = "Vivec"
     graph.add_nodes([node1, node2])
-    graph.create_edge(node1, node2, 1)
+    graph.create_edge(node1, node2, time=1, type=1)
     return graph
   
 
@@ -71,7 +71,7 @@ class TestGraph:
     node1 = "Ebonheart"
     node2 = "Vivec"
     graph.add_nodes([node1, node2])
-    graph.create_edge(node1, node2, 1)
+    graph.create_edge(node1, node2, time=1)
     assert graph.has_edge(node1, node2) == True
   def test_add_multiple_edges_with_weight(self, graph: Graph):
     node1 = "Ebonheart"
@@ -79,9 +79,9 @@ class TestGraph:
     graph.add_nodes([node1, node2])
     graph.create_edges([(node1, node2, 1)])
     assert graph.has_edge(node1, node2) == True
-  def test_get_weight_of_edge(self, vvardenfell: Graph):
-    assert vvardenfell.get_weight("Ebonheart", "Vivec") == 1
+  def test_get_property_of_edge(self, vvardenfell: Graph):
+    assert vvardenfell.get_prop("Ebonheart", "Vivec", "time") == 1
+    assert vvardenfell.get_prop("Ebonheart", "Vivec", "type") == 1
   def test_create_directed_edge(self, graph: Graph):
     pass
-
     
