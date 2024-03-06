@@ -6,6 +6,15 @@ from graph import Graph
 def graph():
   return Graph()
 
+@pytest.fixture
+def vvardenfell(graph: Graph):
+    node1 = "Ebonheart"
+    node2 = "Vivec"
+    graph.add_nodes([node1, node2])
+    graph.create_edge(node1, node2, 1)
+    return graph
+  
+
 class TestGraph:
   def test_graph_initialize(self, graph: Graph):
     assert len(graph.adjacency_list) == 0
@@ -58,4 +67,21 @@ class TestGraph:
     edges = [("Jasmine", "Ada"), ("Ada", "Lydia"), ("Lydia", "Jasmine")]
     graph.create_edges(edges)
     assert all([True if graph.has_edge(node1, node2) else False for node1, node2, in edges])
+  def test_add_weight_to_edges(self, graph: Graph):
+    node1 = "Ebonheart"
+    node2 = "Vivec"
+    graph.add_nodes([node1, node2])
+    graph.create_edge(node1, node2, 1)
+    assert graph.has_edge(node1, node2) == True
+  def test_add_multiple_edges_with_weight(self, graph: Graph):
+    node1 = "Ebonheart"
+    node2 = "Vivec"
+    graph.add_nodes([node1, node2])
+    graph.create_edges([(node1, node2, 1)])
+    assert graph.has_edge(node1, node2) == True
+  def test_get_weight_of_edge(self, vvardenfell: Graph):
+    assert vvardenfell.get_weight("Ebonheart", "Vivec") == 1
+  def test_create_directed_edge(self, graph: Graph):
+    pass
 
+    

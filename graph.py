@@ -15,13 +15,17 @@ class Graph:
       return True
     return False
   
-  def create_edge(self, node1, node2):
+  def create_edge(self, node1, node2, weight=0):
     self.adjacency_list.get(node1).add(node2)
     self.adjacency_list.get(node2).add(node1)
     
   def create_edges(self, edges:list):
-    for node1, node2 in edges:
-      self.create_edge(node1, node2)
+    for edge in edges:
+      if len(edge) == 2:
+        self.create_edge(edge[0], edge[1])
+      elif len(edge) == 3:
+        self.create_edge(edge[0], edge[1], edge[2])
+        
     
   def has_edge(self, node1, node2):
     get_node1 = self.adjacency_list.get(node1)

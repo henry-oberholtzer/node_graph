@@ -12,4 +12,15 @@
 
 from pytest import main
 
+from graph import Graph
+
+from routes import cities, edges
+
+vvardenfell = Graph()
+
+vvardenfell.add_nodes(cities)
+vvardenfell.create_edges(edges)
+print(vvardenfell.adjacency_list)
+
+
 main(['-vv'])

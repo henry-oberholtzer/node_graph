@@ -1,5 +1,5 @@
-Nodes:
-["Ebonheart",
+cities = [
+"Ebonheart",
 "Vivec",
 "Tel Branora",
 "Seyda Neen",
@@ -21,8 +21,9 @@ Nodes:
 "Vos"
 ]
 
-Weighted Edges: (starting, ending, weight)
-[("Ebonheart", "Vivec", 1),
+# Weighted Edges: (starting, ending, weight)
+edges = [
+("Ebonheart", "Vivec", 1),
 ("Ebonheart", "Tel Branora", 6),
 ("Ebonheart", "Sadrith Mora", 11),
 ("Ebonheart", "Hla Oad", 5),
