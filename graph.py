@@ -1,3 +1,6 @@
+import sys
+
+
 class Graph:
   def __init__(self):
     self.adjacency_list = {}
@@ -26,9 +29,9 @@ class Graph:
       if len(edge) == 2:
         self.create_edge(edge[0], edge[1])
       elif len(edge) == 3:
-        self.create_edge(node1=edge[0], node2=edge[1], time=edge[2])
+        self.create_edge(node1=edge[0], node2=edge[1], weight=edge[2])
       elif len(edge) == 4:
-        self.create_edge(node1=edge[0], node2=edge[1], time=edge[2], type=edge[3])
+        self.create_edge(node1=edge[0], node2=edge[1], weight=edge[2], type=edge[3])
   
   def get_prop(self, node1, node2, prop):
     return self.adjacency_list.get(node1)[node2][prop]
@@ -56,7 +59,7 @@ class Graph:
     stack = [starting_node]
     traversed_nodes = set()
     while stack:
-      active_node = active_node = stack.pop(0)
+      active_node = stack.pop(0)
       if (active_node == target_node):
         return True
       else:
@@ -68,6 +71,30 @@ class Graph:
             else:
               stack.insert(-1, node)
     return False
+  
+  def dijkstra_algorithm(self, starting_node, target_node, with_history=False):
+    unvisited_nodes = list(self.adjacency_list)
+    
+    max_value = sys.maxsize
+    shortest_path = {node: max_value for node in unvisited_nodes}
+    visited_nodes = {}
+    shortest_path[starting_node] = 0
+    
+    while unvisited_nodes:
+      active_node = None
+      for node in unvisited_nodes:
+        if active_node == None:
+          active_node = node
+        elif shortest_path[node] < shortest_path[active_node]:
+          active_node = node
+
+      for neighbor_node in self.adjacency_list.get(active_node):
+          temp_weight = shortest_path[active_node] + self.adjacency_list[active_node][neighbor_node]["weight"]
+          if temp_weight < shortest_path[neighbor_node]:
+            shortest_path[neighbor_node] = temp_weight
+            visited_nodes[neighbor_node] = active_node
+      unvisited_nodes.remove(active_node)
+    return shortest_path[target_node]
   
   def depthfirst_reachable(self, starting_node, target_node):
     return self.__search_algorithm(starting_node, target_node)

@@ -20,8 +20,8 @@ vvardenfell = Graph()
 
 vvardenfell.add_nodes(cities)
 vvardenfell.create_edges(edges)
-print(vvardenfell.adjacency_list)
 print("Hla Oad to Caldera: ", vvardenfell.depthfirst_reachable("Hla Oad", "Caldera"))
 print("Seyda Neen to Vivec: ", vvardenfell.breadthfirst_reachable("Seyda Neen", "Vivec"))
+print("Time from Dagon Fel to Tel Branora: ", vvardenfell.dijkstra_algorithm("Dagon Fel", "Tel Branora"))
 
 main(['-vv'])
